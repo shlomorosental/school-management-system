@@ -1,0 +1,20 @@
+.sidebar {
+    width: 200px; 
+    height: 100%;
+    background: #ddd; 
+  }
+  
+  .sidebar nav {
+    padding: 1rem; 
+  }
+  
+  .sidebar nav a {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+  
+  .sidebar nav a.active {
+    color: #900;
+  }

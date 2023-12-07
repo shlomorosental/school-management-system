@@ -1,0 +1,56 @@
+tbody td,th {
+    border: 2px solid #321a1a;
+
+  }
+  
+  .table {
+    /* width: 100%; */
+    border-collapse: collapse;
+    margin-top: 20px; /* ניתן לשנות את הרווח לפי הצורך שלך */
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .table button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .table button:hover {
+    background-color: #45a049;
+  }
+  button {
+    margin-top: 2px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  
