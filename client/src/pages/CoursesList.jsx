@@ -1,58 +1,64 @@
-import { useState } from "react";
-import "./table.css";
+import React, { useState } from "react";
+import Table from "./Table";
 
 const dummyData = [
   {
     id: 1,
     name: "Math",
-    teacherName: "John Doe",
+    teacher: "John Doe",
     class: 12,
   },
   {
     id: 2,
     name: "English",
-    teacherName: "Jane Smith",
+    teacher: "Jane Smith",
     class: 10,
   },
   {
     id: 3,
     name: "Biology",
-    teacherName: "Jack Ryan",
+    teacher: "Jack Ryan",
     class: 11,
   },
 ];
 
 export default function CoursesList() {
   const [courses, setCourses] = useState(dummyData);
+  const columns = ["Name", "Teacher", "Class"];
+
+  const handleAdd = () => {
+    console.log("Add button clicked");
+    };
+
+  const handleEdit = (row) => {
+    console.log("Edit button clicked for row with id:", row.id);
+  };
+
+  const handleDelete = (row) => {
+    console.log("Delete button clicked for row with id:", row.id);
+  };
 
   return (
     <div>
       <h1>Courses</h1>
 
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Teacher</th>
-            <th>Class</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {courses.map((course) => (
-            <tr key={course.id}>
-              <td>{course.name}</td>
-              <td>{course.teacherName}</td>
-              <td>{course.class}</td>
-              <td>
-                <button>Edit</button>
-                <button>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button>Add Course</button>
+      <Table
+        columns={columns}
+        data={courses}
+        onAdd={handleAdd}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        actions={[
+          {
+            type: "edit",
+            handler: handleEdit,
+          },
+          {
+            type: "delete",
+            handler: handleDelete,
+          },
+        ]}
+      />
     </div>
   );
 }
