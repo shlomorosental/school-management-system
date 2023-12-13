@@ -1,4 +1,4 @@
-import mysql from "mysql2/promise";
+const mysql = require("mysql2/promise");
 
 const pool = mysql.createPool({
   host: "localhost",
@@ -7,7 +7,7 @@ const pool = mysql.createPool({
   database: `grading_system`
 });
 
-export async function checkDBConnection() {
+async function checkDBConnection() {
   try {
     await pool.query("SELECT 1");
     console.log("db connected");
@@ -18,6 +18,7 @@ export async function checkDBConnection() {
     return false;
   }
 }
+module.exports = {pool, checkDBConnection}
 
 // async function get(table, col, key_value, key) {
 //   //if key not provide default value is the primary key.

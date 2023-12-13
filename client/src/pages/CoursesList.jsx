@@ -24,11 +24,11 @@ const dummyData = [
 
 export default function CoursesList() {
   const [courses, setCourses] = useState(dummyData);
-  const columns = ["Name", "Teacher", "Class"];
+  const columns = ["name", "teacher", "class"];
 
   const handleAdd = () => {
     console.log("Add button clicked");
-    };
+  };
 
   const handleEdit = (row) => {
     console.log("Edit button clicked for row with id:", row.id);
@@ -48,16 +48,6 @@ export default function CoursesList() {
         onAdd={handleAdd}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        actions={[
-          {
-            type: "edit",
-            handler: handleEdit,
-          },
-          {
-            type: "delete",
-            handler: handleDelete,
-          },
-        ]}
       />
     </div>
   );

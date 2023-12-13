@@ -1,7 +1,9 @@
 import React from "react";
 import "./table.css";
+import Row from "./Row";
+import Button from "./Button";
 
-export default function Table({ columns, data, actions, onAdd, onEdit, onDelete }) {
+export default function Table({ columns, data, onAdd, onEdit, onDelete }) {
   return (
     <table className="table">
       <thead>
@@ -9,27 +11,32 @@ export default function Table({ columns, data, actions, onAdd, onEdit, onDelete 
           {columns.map((column) => (
             <th key={column}>{column}</th>
           ))}
-          <th>Actions</th>
         </tr>
       </thead>
 
       <tbody>
         {data.map((row) => (
-          <tr key={row.id}>
-            {columns.map((column) => (
-              <td key={column}>{row[column.toLowerCase()]}</td>
-            ))}
-            <td>
-              {actions.map((action, index) => (
-                <button key={index} onClick={() => action.handler(row)}>
-                  {action.type}
-                </button>
-              ))}
-            </td>
-          </tr>
+          <Row
+            key={row.id}
+            columns={columns}
+            rowData={row}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />
         ))}
       </tbody>
-      {onAdd && <button onClick={onAdd}>Add</button>}
+      <tfoot>
+        <tr>
+          {columns.map((column) => (
+            <td key={column}>
+              <input type="text" placeholder={`Enter ${column}`} />
+            </td>
+          ))}
+          <td>
+            <Button type="button" text="Add" action="add" onClick={onAdd} />
+          </td>
+        </tr>
+      </tfoot>
     </table>
   );
 }
