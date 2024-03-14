@@ -30,11 +30,13 @@ async function get(table, col, key_value, key) {
     [key_value]
   );
 }
-// async function add(table, cols, values) {
-//   return await pool.query(`INSERT INTO ${table}(${cols.join(", ")}) VALUES ?`, [
-//     values,
-//   ]);
-// }
+function name(params) {
+  // async function add(table, cols, values) {
+  //   return await pool.query(`INSERT INTO ${table}(${cols.join(", ")}) VALUES ?`, [
+  //     values,
+  //   ]);
+  // }
+}
 // async function update(table, cols, values, key_value) {
 //   const primaryKey = await getPrimaryKey(table);
 //   return await pool.query(

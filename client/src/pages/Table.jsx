@@ -8,8 +8,8 @@ export default function Table({ columns, data, onAdd, onEdit, onDelete }) {
     <table className="table">
       <thead>
         <tr>
-          {columns.map((column) => (
-            <th key={column}>{column}</th>
+          {columns.map((column, index) => (
+            <th key={index}>{column}</th>
           ))}
         </tr>
       </thead>

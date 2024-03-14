@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "./Table";
 
 const dummyData = [
@@ -37,7 +37,13 @@ export default function CoursesList() {
   const handleDelete = (row) => {
     console.log("Delete button clicked for row with id:", row.id);
   };
-
+  useEffect(() => {
+      fetch('http://localhost:5000/api/courses/')
+        .then((response) => response.json())
+        .then((data) => setCourses([data]))
+        .catch((error) => console.log(error));
+  }, []);
+  console.log(courses);
   return (
     <div>
       <h1>Courses</h1>
