@@ -24,7 +24,10 @@ const dummyData = [
 
 export default function CoursesList() {
   const [courses, setCourses] = useState(dummyData);
+  const [teacher, setTeacher] = useState([]);
   const columns = ["name", "teacher", "class"];
+
+
 
   const handleAdd = () => {
     console.log("Add button clicked");
@@ -38,22 +41,29 @@ export default function CoursesList() {
     console.log("Delete button clicked for row with id:", row.id);
   };
   useEffect(() => {
-      fetch('http://localhost:5000/api/courses/')
-        .then((response) => response.json())
-        .then((data) => setCourses([data]))
-        .catch((error) => console.log(error));
+    fetch("http://localhost:5000/api/courses/")
+      .then((response) => response.json())
+      .then((data) => setCourses([data]))
+      .catch((error) => console.log(error));
+
+    fetch("http://localhost:5000/api/teacher/")
+      .then((response) => response.json())
+      .then((data) => setTeacher(data))
+      .catch((error) => console.log(error));
   }, []);
-  console.log(courses);
+
   return (
     <div>
       <h1>Courses</h1>
 
       <Table
+        nameTable="courses"
         columns={columns}
         data={courses}
         onAdd={handleAdd}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        teacherList={teacher} 
       />
     </div>
   );

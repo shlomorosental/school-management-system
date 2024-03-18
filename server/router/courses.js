@@ -11,8 +11,9 @@ router.get('/', async (req, res )=>{
             res.status(500).send("Server error")
             }
 })
+
 // router.post("/",async (req,res)=>{
-//     if(!req.body.name || !req.body.description){
+//     if(!req.body.name || !req.body.){
 //         return res.status(400).send({
 //           error: 'You must provide name and description'
 //         })

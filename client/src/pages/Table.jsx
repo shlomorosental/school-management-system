@@ -2,8 +2,18 @@ import React from "react";
 import "./table.css";
 import Row from "./Row";
 import Button from "./Button";
+import { Select } from "@mui/material";
+import SelectComponent from "./SelectComponent";
 
-export default function Table({ columns, data, onAdd, onEdit, onDelete }) {
+export default function Table({
+  nameTable,
+  columns,
+  data,
+  onAdd,
+  onEdit,
+  onDelete,
+  teacherList,
+}) {
   return (
     <table className="table">
       <thead>
@@ -29,9 +39,18 @@ export default function Table({ columns, data, onAdd, onEdit, onDelete }) {
         <tr>
           {columns.map((column) => (
             <td key={column}>
-              <input type="text" placeholder={`Enter ${column}`} />
+              {nameTable === "courses" && column === "name" ? (
+                <input type="text" placeholder={`Enter ${column}`} />
+              ) : column === "teacher" ? (
+                <SelectComponent
+                  options={teacherList.map(
+                    (item) => item.first_name + " " + item.last_name
+                  )}
+                />
+              ) : <SelectComponent options={[1, 2]} />}
             </td>
           ))}
+
           <td>
             <Button type="button" text="Add" action="add" onClick={onAdd} />
           </td>
