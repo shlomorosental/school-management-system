@@ -2,7 +2,7 @@ import React from "react";
 import "./table.css";
 import Row from "./Row";
 import Button from "./Button";
-import { Select } from "@mui/material";
+// import { Select } from "@mui/material";
 import SelectComponent from "./SelectComponent";
 
 export default function Table({
@@ -47,7 +47,7 @@ export default function Table({
                     (item) => item.first_name + " " + item.last_name
                   )}
                 />
-              ) : <SelectComponent options={[1, 2]} />}
+              ) : <SelectComponent options={[1, 2, 3, 4, 5, 6, 7]} />}
             </td>
           ))}
 
