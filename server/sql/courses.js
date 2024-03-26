@@ -7,7 +7,11 @@ async function getCourses() {
     const res = await pool.query(sql);
     return res;
   }
-
-
-
-module.exports = getCourses;
+  async function addCourse (name, id ,clas) {
+      let sql = `INSERT INTO courses (name, teacher_id, class) VALUES (?, ?, ?) `;
+      const params = [name, id, clas];
+      const res = await pool.query(sql,params);
+      return res;
+  };
+  
+module.exports = {getCourses,addCourse};

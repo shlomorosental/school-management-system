@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
 
-function SelectComponent({ options }) {
+function SelectComponent({ options, setv }) {
   const [selectedOption, setSelectedOption] = useState('');
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
+    setv(event.target.value)
   };
 
   return (

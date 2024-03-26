@@ -5,5 +5,15 @@ async function getTeacher() {
     const res = await pool.query(sql);
     return res;
   }
-  
-module.exports = getTeacher;
+async function getIdByName(name) {
+    let id = null;
+    try{
+        const [data] = await getTeacher();
+        for(let i of data){
+            if(i.first_name + " " + i.last_name===name){id=i.id;}
+        }   
+    }catch(e){console.log(e)}
+    return id;
+}
+
+module.exports={getTeacher,getIdByName};

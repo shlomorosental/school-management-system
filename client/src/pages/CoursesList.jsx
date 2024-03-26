@@ -29,8 +29,28 @@ export default function CoursesList() {
 
 
 
-  const handleAdd = () => {
-    console.log("Add button clicked");
+  const handleAdd = async(name, nameTeacher, clas) => {
+    if(!name||!nameTeacher||!clas){
+      alert("All fields are required")
+      return;
+    }
+    // Add a new course to the
+    try {
+      let res = await fetch(`http://localhost:5000/api/courses/`, {method: 'POST',  
+      headers: {
+        "Content-Type": "application/json", // Specify the content type if sending JSON data.
+      },
+      body: JSON.stringify({
+        name: name,
+        teacher: nameTeacher,
+        class: clas
+      })
+    });
+    http()
+    }
+    catch (err) {
+      console.error('Error: ', err);
+    }
   };
 
   const handleEdit = (row) => {
@@ -41,17 +61,20 @@ export default function CoursesList() {
     console.log("Delete button clicked for row with id:", row.id);
   };
   useEffect(() => {
-    fetch("http://localhost:5000/api/courses/")
-      .then((response) => response.json())
-      .then((data) => setCourses([data]))
-      .catch((error) => console.log(error));
-
-    fetch("http://localhost:5000/api/teacher/")
-      .then((response) => response.json())
-      .then((data) => setTeacher(data))
-      .catch((error) => console.log(error));
+    http()
   }, []);
 
+ const http = ()=>{
+  fetch("http://localhost:5000/api/courses/")
+  .then((response) => response.json())
+  .then((data) => setCourses(data))
+  .catch((error) => console.log(error));
+
+fetch("http://localhost:5000/api/teacher/")
+  .then((response) => response.json())
+  .then((data) => setTeacher(data))
+  .catch((error) => console.log(error));
+ }
   return (
     <div>
       <h1>Courses</h1>
@@ -67,4 +90,5 @@ export default function CoursesList() {
       />
     </div>
   );
-}
+  };
+
