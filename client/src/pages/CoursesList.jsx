@@ -58,7 +58,12 @@ export default function CoursesList() {
   };
 
   const handleDelete = (row) => {
-    console.log("Delete button clicked for row with id:", row.id);
+    fetch(`http://localhost:5000/api/courses/${row.id}`, {method: 'delete'})
+    .then((response)=> response.text())
+    .then((data)=>{
+      console.log((data));
+      http()
+    })
   };
   useEffect(() => {
     http()
