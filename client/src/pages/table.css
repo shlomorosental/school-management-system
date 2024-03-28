@@ -4,9 +4,8 @@ tbody td,th {
   }
   
   .table {
-    /* width: 100%; */
     border-collapse: collapse;
-    margin-top: 20px; /* ניתן לשנות את הרווח לפי הצורך שלך */
+    margin-top: 20px;
   }
   
   .table th, .table td {

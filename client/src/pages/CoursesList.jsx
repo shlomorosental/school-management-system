@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Table from "./Table";
+import EditRow from "./EditRow";
+
 
 const dummyData = [
   {
@@ -25,6 +27,8 @@ const dummyData = [
 export default function CoursesList() {
   const [courses, setCourses] = useState(dummyData);
   const [teacher, setTeacher] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [dataEdit, setDataEdit] = useState({});
   const columns = ["name", "teacher", "class"];
 
   const handleAdd = async (name, nameTeacher, clas) => {
@@ -52,6 +56,8 @@ export default function CoursesList() {
 
   const handleEdit = (row) => {
     console.log("Edit button clicked for row with id:", row.id);
+    setIsEdit(!isEdit);
+    setDataEdit(row);
   };
 
   const handleDelete = (row) => {
@@ -90,6 +96,7 @@ export default function CoursesList() {
         onDelete={handleDelete}
         teacherList={teacher}
       />
+      {isEdit && <EditRow  teacherList={teacher} data={dataEdit} renderPage={renderPage} setIsEdit={setIsEdit}/>}
     </div>
   );
 }
