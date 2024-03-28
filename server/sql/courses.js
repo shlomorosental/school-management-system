@@ -16,7 +16,6 @@ async function addCourse(name, id, clas) {
 async function deleteCourse(id) {
   let sql = "DELETE FROM courses WHERE id=?";
   const params = [id];
-  console.log(id);
   const res = await pool.query(sql, params);
   if (res.affectedRows > 0) {
     return true;

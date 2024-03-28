@@ -27,29 +27,26 @@ export default function CoursesList() {
   const [teacher, setTeacher] = useState([]);
   const columns = ["name", "teacher", "class"];
 
-
-
-  const handleAdd = async(name, nameTeacher, clas) => {
-    if(!name||!nameTeacher||!clas){
-      alert("All fields are required")
+  const handleAdd = async (name, nameTeacher, clas) => {
+    if (!name || !nameTeacher || !clas) {
+      alert("All or some of the fields are empty");
       return;
     }
-    // Add a new course to the
     try {
-      let res = await fetch(`http://localhost:5000/api/courses/`, {method: 'POST',  
-      headers: {
-        "Content-Type": "application/json", // Specify the content type if sending JSON data.
-      },
-      body: JSON.stringify({
-        name: name,
-        teacher: nameTeacher,
-        class: clas
-      })
-    });
-    http()
-    }
-    catch (err) {
-      console.error('Error: ', err);
+      await fetch(`http://localhost:5000/api/courses/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          teacher: nameTeacher,
+          class: clas,
+        }),
+      });
+      renderPage();
+    } catch (err) {
+      console.error("Error: ", err);
     }
   };
 
@@ -58,28 +55,28 @@ export default function CoursesList() {
   };
 
   const handleDelete = (row) => {
-    fetch(`http://localhost:5000/api/courses/${row.id}`, {method: 'delete'})
-    .then((response)=> response.text())
-    .then((data)=>{
-      console.log((data));
-      http()
-    })
+    fetch(`http://localhost:5000/api/courses/${row.id}`, { method: "delete" })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+        renderPage();
+      });
   };
   useEffect(() => {
-    http()
+    renderPage();
   }, []);
 
- const http = ()=>{
-  fetch("http://localhost:5000/api/courses/")
-  .then((response) => response.json())
-  .then((data) => setCourses(data))
-  .catch((error) => console.log(error));
+  const renderPage = () => {
+    fetch("http://localhost:5000/api/courses/")
+      .then((response) => response.json())
+      .then((data) => setCourses(data))
+      .catch((error) => console.log(error));
 
-fetch("http://localhost:5000/api/teacher/")
-  .then((response) => response.json())
-  .then((data) => setTeacher(data))
-  .catch((error) => console.log(error));
- }
+    fetch("http://localhost:5000/api/teacher/")
+      .then((response) => response.json())
+      .then((data) => setTeacher(data))
+      .catch((error) => console.log(error));
+  };
   return (
     <div>
       <h1>Courses</h1>
@@ -91,9 +88,8 @@ fetch("http://localhost:5000/api/teacher/")
         onAdd={handleAdd}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        teacherList={teacher} 
+        teacherList={teacher}
       />
     </div>
   );
-  };
-
+}

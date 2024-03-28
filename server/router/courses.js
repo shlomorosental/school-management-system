@@ -31,7 +31,6 @@ router.post("/", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  // console.log( req.params.id);
   if (!req.params.id) {
     return res.status(400).send({
       error: "Missing course ID",
@@ -48,7 +47,6 @@ router.delete("/:id", async (req, res) => {
   }
 });
 router.put("/:id", async (req, res) => {
-  //console.log(req.params.id);
   if (!req.body.name && !req.body.teacher && !req.body.class) {
     return res.status(400).send({
       error: "Please provide course name or teacher or class to update",
